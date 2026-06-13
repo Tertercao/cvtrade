@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rizky Kadari — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+:root{
+  --bg:#06080f;
+  --bg2:#0b0f1a;
+  --glass:rgba(255,255,255,0.04);
+  --glass-border:rgba(255,255,255,0.08);
+  --glass-hover:rgba(255,255,255,0.07);
+  --violet:#7c6eff;
+  --violet-soft:rgba(124,110,255,0.15);
+  --violet-glow:rgba(124,110,255,0.4);
+  --gold:#f0c060;
+  --gold-soft:rgba(240,192,96,0.12);
+  --green:#34e8a0;
+  --green-soft:rgba(52,232,160,0.12);
+  --red:#ff6b8a;
+  --red-soft:rgba(255,107,138,0.12);
+  --cyan:#48d8f0;
+  --text:#eef0f8;
+  --text2:#9098b8;
+  --text3:#4a5270;
+  --r:16px;
+  --r2:24px;
+  --sans:'Outfit',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
+
+/* ── BLOBS ── */
+.blob-container{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);animation:blobFloat 18s ease-in-out infinite;opacity:0.18}
+.blob1{width:600px;height:600px;background:radial-gradient(circle,#7c6eff,transparent 70%);top:-100px;left:-100px;animation-duration:20s}
+.blob2{width:500px;height:500px;background:radial-gradient(circle,#48d8f0,transparent 70%);top:40%;right:-150px;animation-duration:16s;animation-delay:-6s}
+.blob3{width:400px;height:400px;background:radial-gradient(circle,#34e8a0,transparent 70%);bottom:-50px;left:30%;animation-duration:22s;animation-delay:-10s}
+.blob4{width:300px;height:300px;background:radial-gradient(circle,#f0c060,transparent 70%);top:60%;left:10%;animation-duration:14s;animation-delay:-4s;opacity:0.1}
+@keyframes blobFloat{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(40px,-30px) scale(1.05)}
+  66%{transform:translate(-20px,40px) scale(0.95)}
+}
+
+/* ── PARTICLES ── */
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:72px;
+  background:rgba(6,8,15,0.7);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--glass-border);
+}
+.nav-logo{font-family:var(--mono);font-size:14px;font-weight:700;background:linear-gradient(135deg,var(--violet),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:0.02em}
+.nav-links{display:flex;gap:8px;list-style:none}
+.nav-links a{padding:8px 16px;border-radius:100px;font-size:13px;font-weight:500;color:var(--text2);text-decoration:none;transition:all .2s}
+.nav-links a:hover{color:var(--text);background:var(--glass)}
+.nav-badge{display:flex;align-items:center;gap:8px;padding:8px 16px;border-radius:100px;background:var(--green-soft);border:1px solid rgba(52,232,160,0.2);font-size:12px;font-weight:600;color:var(--green)}
+.nav-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(52,232,160,0.4)}50%{opacity:0.7;box-shadow:0 0 0 6px rgba(52,232,160,0)}}
+
+/* ── WRAPPER ── */
+.wrapper{position:relative;z-index:1}
+
+/* ── HERO ── */
+/* hero wrapper to contain float cards */
+.hero-outer{position:relative;overflow:hidden}
+#hero{min-height:100vh;display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:100px 80px 60px;max-width:1200px;margin:0 auto;position:relative;gap:40px}
+.hero-content{flex:1;display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 18px;border-radius:100px;background:var(--violet-soft);border:1px solid rgba(124,110,255,0.25);font-family:var(--mono);font-size:11px;color:var(--violet);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:32px}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--violet);animation:pulse 2s infinite}
+h1.hero-title{font-size:clamp(48px,8vw,96px);font-weight:900;line-height:1;letter-spacing:-0.03em;margin-bottom:12px}
+.hero-title .line1{display:block;color:var(--text)}
+.hero-title .line2{display:block;background:linear-gradient(135deg,var(--violet) 0%,var(--cyan) 50%,var(--green) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:gradShift 4s ease infinite}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.hero-title .line3{display:block;color:var(--text3);font-weight:300}
+.hero-sub{font-size:18px;color:var(--text2);max-width:520px;line-height:1.8;margin:28px 0 48px;font-weight:400}
+.hero-sub strong{color:var(--text);font-weight:600}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:64px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;transition:all .25s;cursor:pointer;border:none;font-family:var(--sans)}
+.btn-primary{background:linear-gradient(135deg,var(--violet),#a78bfa);color:#fff;box-shadow:0 0 32px rgba(124,110,255,0.35)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 48px rgba(124,110,255,0.5)}
+.btn-ghost{background:var(--glass);color:var(--text);border:1px solid var(--glass-border);backdrop-filter:blur(10px)}
+.btn-ghost:hover{background:var(--glass-hover);border-color:rgba(255,255,255,0.15);transform:translateY(-2px)}
+
+/* ── LIVE TICKER ── */
+.hero-live{display:flex;gap:12px;flex-wrap:wrap}
+.live-pill{display:flex;align-items:center;gap:8px;padding:8px 16px;border-radius:100px;background:var(--glass);border:1px solid var(--glass-border);font-family:var(--mono);font-size:12px;backdrop-filter:blur(10px)}
+.live-pill .val{color:var(--green);font-weight:700}
+.live-pill .val.down{color:var(--red)}
+.live-pill .label{color:var(--text3)}
+
+/* ── FLOATING CARDS ── */
+.hero-float{display:flex;flex-direction:column;gap:16px;pointer-events:none;flex-shrink:0;width:220px}
+.float-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--r2);padding:20px 24px;backdrop-filter:blur(20px);animation:floatY 6s ease-in-out infinite;min-width:200px}
+.float-card:nth-child(2){animation-delay:-2s;animation-duration:8s}
+.float-card:nth-child(3){animation-delay:-4s;animation-duration:7s}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.float-card .fc-label{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px}
+.float-card .fc-val{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--gold)}
+.float-card .fc-sub{font-size:11px;color:var(--text2);margin-top:2px}
+
+/* ── SECTION BASE ── */
+.sec{max-width:1200px;margin:0 auto;padding:100px 80px}
+.sec-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:var(--violet);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px}
+.sec-tag::before{content:'';width:20px;height:1px;background:var(--violet)}
+h2.sec-title{font-size:clamp(32px,5vw,52px);font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin-bottom:64px}
+h2.sec-title span{background:linear-gradient(135deg,var(--violet),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+/* ── GLASS CARD ── */
+.gcard{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--r2);padding:32px;backdrop-filter:blur(16px);transition:all .3s;position:relative;overflow:hidden}
+.gcard::before{content:'';position:absolute;inset:0;border-radius:var(--r2);background:linear-gradient(135deg,rgba(255,255,255,0.04),transparent);pointer-events:none}
+.gcard:hover{border-color:rgba(124,110,255,0.3);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 40px rgba(124,110,255,0.08)}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.about-bio p{color:var(--text2);line-height:1.9;font-size:15px;margin-bottom:18px}
+.about-bio strong{color:var(--text);font-weight:600}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.stat-pill{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--r);padding:24px;text-align:center;backdrop-filter:blur(10px)}
+.stat-pill .n{font-family:var(--mono);font-size:36px;font-weight:700;background:linear-gradient(135deg,var(--violet),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block}
+.stat-pill .l{font-size:12px;color:var(--text3);margin-top:4px}
+
+/* ── SKILLS ── */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.skill-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--r2);padding:28px;backdrop-filter:blur(16px);transition:all .3s;position:relative;overflow:hidden}
+.skill-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--violet),transparent);opacity:0;transition:opacity .3s}
+.skill-card:hover{transform:translateY(-4px);border-color:rgba(124,110,255,0.25);box-shadow:0 16px 48px rgba(0,0,0,0.3)}
+.skill-card:hover::after{opacity:1}
+.sk-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px}
+.sk-icon.v{background:var(--violet-soft)}
+.sk-icon.g{background:var(--gold-soft)}
+.sk-icon.c{background:rgba(72,216,240,0.12)}
+.sk-icon.gr{background:var(--green-soft)}
+.skill-card h3{font-size:15px;font-weight:700;margin-bottom:8px;color:var(--text)}
+.skill-card p{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:16px}
+.chip-row{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:100px;background:var(--bg2);color:var(--text3);border:1px solid rgba(255,255,255,0.06)}
+.chip.v{color:var(--violet);border-color:rgba(124,110,255,0.25);background:var(--violet-soft)}
+.chip.g{color:var(--gold);border-color:rgba(240,192,96,0.2);background:var(--gold-soft)}
+.chip.c{color:var(--cyan);border-color:rgba(72,216,240,0.2);background:rgba(72,216,240,0.08)}
+.chip.gr{color:var(--green);border-color:rgba(52,232,160,0.2);background:var(--green-soft)}
+
+/* ── PROJECTS ── */
+.proj-featured{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+.proj-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--r2);padding:36px;backdrop-filter:blur(16px);transition:all .3s;position:relative;overflow:hidden;text-decoration:none;color:inherit;display:block}
+.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--violet),var(--cyan));opacity:0;transition:opacity .3s}
+.proj-card:hover{transform:translateY(-6px);border-color:rgba(124,110,255,0.3);box-shadow:0 24px 80px rgba(0,0,0,0.5),0 0 60px rgba(124,110,255,0.08)}
+.proj-card:hover::before{opacity:1}
+.proj-card.full{grid-column:1/-1}
+.proj-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px}
+.proj-badge{font-family:var(--mono);font-size:10px;padding:5px 12px;border-radius:100px;background:var(--violet-soft);color:var(--violet);border:1px solid rgba(124,110,255,0.2);letter-spacing:0.06em;text-transform:uppercase}
+.proj-badge.live{background:var(--green-soft);color:var(--green);border-color:rgba(52,232,160,0.2)}
+.proj-badge.pine{background:var(--gold-soft);color:var(--gold);border-color:rgba(240,192,96,0.2)}
+.proj-arrow{font-size:20px;color:var(--text3);transition:all .3s}
+.proj-card:hover .proj-arrow{color:var(--violet);transform:translate(4px,-4px)}
+.proj-card h3{font-size:22px;font-weight:800;letter-spacing:-0.01em;margin-bottom:10px;color:var(--text)}
+.proj-card p{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:20px}
+.proj-features{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:20px}
+.pf{font-size:12px;color:var(--text2);display:flex;align-items:center;gap:8px}
+.pf::before{content:'◆';font-size:6px;color:var(--violet);flex-shrink:0}
+.proj-stack{display:flex;flex-wrap:wrap;gap:6px}
+
+/* ── LIVE DATA STRIP ── */
+.live-strip{background:rgba(52,232,160,0.04);border:1px solid rgba(52,232,160,0.1);border-radius:var(--r);padding:20px 28px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-bottom:24px}
+.live-label{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.live-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;flex-shrink:0}
+.live-item{display:flex;flex-direction:column;gap:2px}
+.live-item .li-label{font-size:10px;color:var(--text3);font-family:var(--mono)}
+.live-item .li-val{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--text)}
+.live-item .li-val.up{color:var(--green)}
+.live-item .li-val.dn{color:var(--red)}
+.live-divider{width:1px;height:40px;background:var(--glass-border)}
+
+/* ── CERTS ── */
+.certs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cert{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--r);padding:22px;backdrop-filter:blur(10px);transition:all .2s}
+.cert:hover{border-color:rgba(240,192,96,0.25);transform:translateY(-2px)}
+.cert-org{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px}
+.cert-name{font-size:13px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:8px}
+.cert-year{font-family:var(--mono);font-size:11px;color:var(--text3)}
+
+/* ── CONTACT ── */
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.contact-left h2{font-size:clamp(32px,5vw,56px);font-weight:900;line-height:1.1;letter-spacing:-0.02em;margin-bottom:16px}
+.contact-left p{color:var(--text2);line-height:1.8;margin-bottom:32px}
+.contact-links{display:flex;flex-direction:column;gap:12px}
+.clink{display:flex;align-items:center;gap:16px;padding:18px 22px;border-radius:var(--r);background:var(--glass);border:1px solid var(--glass-border);text-decoration:none;color:var(--text);backdrop-filter:blur(10px);transition:all .2s}
+.clink:hover{border-color:rgba(124,110,255,0.3);background:var(--glass-hover);transform:translateX(4px)}
+.clink .ci{font-size:20px;width:28px;text-align:center}
+.clink .ct{font-size:14px;font-weight:600}
+.clink .cu{font-family:var(--mono);font-size:11px;color:var(--text3);margin-left:auto}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--glass-border);max-width:1200px;margin:0 auto;padding:32px 80px;display:flex;justify-content:space-between;align-items:center}
+footer p{font-family:var(--mono);font-size:11px;color:var(--text3)}
+footer span{background:linear-gradient(135deg,var(--violet),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700}
+
+/* ── DIVIDER ── */
+.sec-divider{border:none;border-top:1px solid var(--glass-border);margin:0 80px}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:0 24px}
+  .nav-links{display:none}
+  #hero{padding:100px 24px 60px;flex-direction:column;align-items:flex-start}
+  .hero-float{display:none}
+  .sec{padding:64px 24px}
+  .about-grid,.proj-featured,.contact-wrap{grid-template-columns:1fr}
+  .proj-card.full{grid-column:auto}
+  .skills-grid{grid-template-columns:1fr 1fr}
+  .certs-grid{grid-template-columns:1fr 1fr}
+  .sec-divider{margin:0 24px}
+  footer{padding:24px;flex-direction:column;gap:8px;text-align:center}
+}
+@media(max-width:560px){
+  .skills-grid,.certs-grid{grid-template-columns:1fr}
+  .proj-features{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Blobs -->
+<div class="blob-container">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+  <div class="blob blob4"></div>
+</div>
+
+<!-- Particle canvas -->
+<canvas id="particles"></canvas>
+
+<div class="wrapper">
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">rk.dev</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certs">Credentials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-badge">Open to work</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-outer">
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span class="dot"></span>Economics × IT × Trading</div>
+    <h1 class="hero-title">
+      <span class="line1">Rizky</span>
+      <span class="line2">Kadari.</span>
+      <span class="line3">Builder of things that think.</span>
+    </h1>
+    <p class="hero-sub">
+      Student. Trader. Developer.<br/>
+      I build <strong>data-driven tools</strong> at the intersection of <strong>markets and code</strong> — from live economic dashboards to custom SMC trading indicators.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn btn-primary">View my work ↓</a>
+      <a href="#contact" class="btn btn-ghost">Let's connect</a>
+    </div>
+    <!-- Live pills -->
+    <div class="hero-live">
+      <div class="live-pill"><span class="label">XAU/USD</span><span class="val" id="xau-price">loading…</span></div>
+      <div class="live-pill"><span class="label">BTC</span><span class="val" id="btc-price">loading…</span></div>
+      <div class="live-pill"><span class="label">ETH</span><span class="val" id="eth-price">loading…</span></div>
+      <div class="live-pill"><span class="label">USD/IDR</span><span class="val" id="usd-idr">loading…</span></div>
+    </div>
+  </div>
+
+  <!-- Floating cards (desktop) -->
+  <div class="hero-float">
+    <div class="float-card gcard">
+      <div class="fc-label">XAU/USD · Live</div>
+      <div class="fc-val" id="fc-xau">—</div>
+      <div class="fc-sub">Gold Spot Price (USD)</div>
+    </div>
+    <div class="float-card gcard">
+      <div class="fc-label">Strategy</div>
+      <div class="fc-val" style="font-size:16px;color:var(--cyan)">SMC + Fundamentals</div>
+      <div class="fc-sub">NFP · CPI · PPI</div>
+    </div>
+    <div class="float-card gcard">
+      <div class="fc-label">Status</div>
+      <div class="fc-val" style="font-size:14px;color:var(--green)">● Available</div>
+      <div class="fc-sub">Remote · Part-time</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="sec">
+  <div class="sec-tag">About me</div>
+  <h2 class="sec-title">Two disciplines,<br/><span>one vision.</span></h2>
+  <div class="about-grid reveal">
+    <div class="about-bio gcard">
+      <p>With a foundation in <strong>Informatics Engineering</strong> and a current focus on <strong>Economics & Development</strong>, I sit at a rare intersection — someone who understands both how systems are built and how markets behave.</p>
+      <p>Over <strong>2 years of active trading</strong> in XAU/USD and Nasdaq using Smart Money Concepts, fundamental analysis, and self-built Pine Script indicators has sharpened my ability to translate complex patterns into structured, data-driven logic.</p>
+      <p>I'm actively seeking <strong>remote, part-time opportunities</strong> in development, data analysis, or anything that merges analytical and technical thinking — so I can build something meaningful while continuing to grow as a trader.</p>
+      <div style="display:flex;gap:10px;margin-top:24px;flex-wrap:wrap">
+        <span class="chip gr">📍 Bandar Lampung, ID</span>
+        <span class="chip v">🎓 Economics Student</span>
+        <span class="chip c">💻 Ex-IT Student (TI)</span>
+        <span class="chip g">📈 Active Trader</span>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-pill"><span class="n">2+</span><div class="l">Years Trading</div></div>
+      <div class="stat-pill"><span class="n">2</span><div class="l">Markets (XAU + NAS)</div></div>
+      <div class="stat-pill"><span class="n">5+</span><div class="l">Certifications</div></div>
+      <div class="stat-pill"><span class="n">∞</span><div class="l">Learning Mindset</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="sec-divider"/>
+
+<!-- SKILLS -->
+<section id="skills" class="sec">
+  <div class="sec-tag">Competencies</div>
+  <h2 class="sec-title">What I <span>bring to the table.</span></h2>
+  <div class="skills-grid reveal">
+    <div class="skill-card">
+      <div class="sk-icon g">📊</div>
+      <h3>Trading & Market Analysis</h3>
+      <p>Smart Money Concepts, market structure, liquidity zones, and macro fundamental reading via NFP, CPI, and PPI data releases.</p>
+      <div class="chip-row"><span class="chip g">SMC</span><span class="chip g">XAU/USD</span><span class="chip g">Nasdaq</span><span class="chip g">Fundamentals</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="sk-icon v">🔧</div>
+      <h3>Pine Script Development</h3>
+      <p>Custom TradingView indicator development — full SMC automation including BOS/CHoCH detection, zone plotting, and signal logic.</p>
+      <div class="chip-row"><span class="chip v">Pine Script v5</span><span class="chip v">TradingView</span><span class="chip v">Indicators</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="sk-icon c">💻</div>
+      <h3>Programming & Web Dev</h3>
+      <p>OOP fundamentals, database design, SQL, and front-end web development including REST API integration and live data dashboards.</p>
+      <div class="chip-row"><span class="chip c">Python</span><span class="chip c">SQL</span><span class="chip c">JavaScript</span><span class="chip c">HTML/CSS</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="sk-icon gr">📈</div>
+      <h3>Economic Analysis</h3>
+      <p>Quantitative modeling, policy evaluation, and development economics with a data-first approach and macro indicator awareness.</p>
+      <div class="chip-row"><span class="chip gr">Econometrics</span><span class="chip gr">Macro</span><span class="chip gr">Statistics</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="sk-icon" style="background:rgba(255,107,138,0.1)">🏥</div>
+      <h3>Informatics Management</h3>
+      <p>Health data systems, clinical information management, and digital health standards (HL7/FHIR, EHR, HIS).</p>
+      <div class="chip-row"><span class="chip">HL7/FHIR</span><span class="chip">EHR</span><span class="chip">HIS</span><span class="chip">Oracle DB</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="sk-icon" style="background:rgba(240,192,96,0.1)">🚀</div>
+      <h3>API Integration & Data</h3>
+      <p>Multi-source API orchestration, real-time data pipelines, and dashboard development pulling from public financial and economic APIs.</p>
+      <div class="chip-row"><span class="chip g">REST API</span><span class="chip g">CoinGecko</span><span class="chip g">Frankfurter</span><span class="chip g">Live Data</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="sec-divider"/>
+
+<!-- PROJECTS -->
+<section id="projects" class="sec">
+  <div class="sec-tag">Projects</div>
+  <h2 class="sec-title">Things I've <span>actually built.</span></h2>
+
+  <!-- Live data strip -->
+  <div class="live-strip reveal">
+    <div class="live-label">Live Market Data</div>
+    <div class="live-divider"></div>
+    <div class="live-item"><div class="li-label">XAU/USD</div><div class="li-val up" id="ls-xau">—</div></div>
+    <div class="live-divider"></div>
+    <div class="live-item"><div class="li-label">BTC/USD</div><div class="li-val up" id="ls-btc">—</div></div>
+    <div class="live-divider"></div>
+    <div class="live-item"><div class="li-label">ETH/USD</div><div class="li-val up" id="ls-eth">—</div></div>
+    <div class="live-divider"></div>
+    <div class="live-item"><div class="li-label">USD/IDR</div><div class="li-val" id="ls-idr">—</div></div>
+    <div class="live-divider"></div>
+    <div class="live-item"><div class="li-label">Fear & Greed</div><div class="li-val" id="ls-fg">—</div></div>
+    <div style="margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--text3)" id="last-update">Fetching…</div>
+  </div>
+
+  <div class="proj-featured reveal">
+
+    <!-- Project 1: EkoStat LIVE -->
+    <div class="proj-card full" style="cursor:pointer" onclick="window.open('https://ekostatslivekyy.netlify.app/','_blank')">
+      <div class="proj-top">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="proj-badge live">● Live</span>
+          <span class="proj-badge">JavaScript · REST API</span>
+          <span class="proj-badge">2025</span>
+        </div>
+        <span class="proj-arrow">↗</span>
+      </div>
+      <h3>EkoStat LIVE — Real-time Economic Dashboard</h3>
+      <p>A fully functional, live economic analytics dashboard for Indonesia — pulling real-time data from multiple free public APIs into a single unified interface. Covers forex, commodities, crypto, and Indonesian macro indicators. Built entirely from scratch without any paid API or framework.</p>
+      <div class="proj-features">
+        <div class="pf">Live forex rates (USD/IDR, EUR, SGD, JPY, CNY, MYR)</div>
+        <div class="pf">XAU, XAG, BTC, ETH spot prices via CoinGecko</div>
+        <div class="pf">Fear & Greed Index + crypto market cap</div>
+        <div class="pf">Indonesian macro: PDB, CPI, BI Rate, reserves</div>
+        <div class="pf">30-day historical chart (USD/IDR)</div>
+        <div class="pf">Top 10 crypto table with 24h performance</div>
+        <div class="pf">BPS/BI data release calendar</div>
+        <div class="pf">50+ official data source directory</div>
+      </div>
+      <div class="proj-stack">
+        <span class="chip c">Vanilla JS</span>
+        <span class="chip c">HTML/CSS</span>
+        <span class="chip gr">CoinGecko API</span>
+        <span class="chip gr">Frankfurter API</span>
+        <span class="chip gr">Alternative.me API</span>
+        <span class="chip v">Netlify Deploy</span>
+        <span class="chip g">Economic Data</span>
+      </div>
+      <div style="margin-top:20px;padding:14px 18px;background:var(--green-soft);border:1px solid rgba(52,232,160,0.15);border-radius:10px;font-size:13px;color:var(--green)">
+        🌐 Live at: <strong>ekostatslivekyy.netlify.app</strong>
+      </div>
+    </div>
+
+    <!-- Project 2: SMC Indicator -->
+    <div class="proj-card">
+      <div class="proj-top">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="proj-badge pine">Pine Script</span>
+          <span class="proj-badge">TradingView · 2024–2025</span>
+        </div>
+        <span class="proj-arrow">↗</span>
+      </div>
+      <h3>SMC Full Suite Indicator</h3>
+      <p>A comprehensive Smart Money Concepts indicator built from scratch in Pine Script v5. Automates the entire SMC framework with configurable history filters for clean, readable charts across any timeframe.</p>
+      <div class="proj-features">
+        <div class="pf">CHoCH & BOS auto-detection</div>
+        <div class="pf">Supply & Demand zone plotting</div>
+        <div class="pf">Liquidity Sweep identification</div>
+        <div class="pf">Strong/Weak High-Low labeling</div>
+        <div class="pf">EQH / EQL + BQL detection</div>
+        <div class="pf">3-level risk entry zones</div>
+        <div class="pf">SSS Liquidity pool markers</div>
+        <div class="pf">Trend bias background</div>
+      </div>
+      <div class="proj-stack">
+        <span class="chip v">Pine Script v5</span>
+        <span class="chip g">SMC</span>
+        <span class="chip c">XAU/USD</span>
+        <span class="chip c">Nasdaq</span>
+        <span class="chip">Overlay Indicator</span>
+      </div>
+    </div>
+
+    <!-- Project 3: Macro Tracker -->
+    <div class="proj-card">
+      <div class="proj-top">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="proj-badge">Python · SQL</span>
+          <span class="proj-badge">2024</span>
+        </div>
+        <span class="proj-arrow">↗</span>
+      </div>
+      <h3>Macro Event Impact Tracker</h3>
+      <p>Data analysis project mapping XAU/USD and Nasdaq price reactions to key macroeconomic events — NFP, CPI, and PPI. Identifies high-probability setups around scheduled news releases.</p>
+      <div class="proj-features">
+        <div class="pf">Pre/post event price reaction analysis</div>
+        <div class="pf">Volatility spike detection</div>
+        <div class="pf">Correlation with SMC structure</div>
+        <div class="pf">Python + SQL data pipeline</div>
+      </div>
+      <div class="proj-stack">
+        <span class="chip">Python</span>
+        <span class="chip">SQL</span>
+        <span class="chip g">NFP / CPI / PPI</span>
+        <span class="chip c">Data Viz</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="sec-divider"/>
+
+<!-- CREDENTIALS -->
+<section id="certs" class="sec">
+  <div class="sec-tag">Credentials</div>
+  <h2 class="sec-title">What I've <span>earned.</span></h2>
+  <div class="certs-grid reveal">
+    <div class="cert">
+      <div class="cert-org">Google · NGOPI Pointer</div>
+      <div class="cert-name">IT & Digital Fundamentals</div>
+      <div class="cert-year">2024</div>
+    </div>
+    <div class="cert">
+      <div class="cert-org">Oracle Academy</div>
+      <div class="cert-name">Database Courses — Oracle DB</div>
+      <div class="cert-year">2024</div>
+    </div>
+    <div class="cert">
+      <div class="cert-org">Oracle Academy</div>
+      <div class="cert-name">Database Design</div>
+      <div class="cert-year">2024</div>
+    </div>
+    <div class="cert">
+      <div class="cert-org">L.A Academy · Prakerja</div>
+      <div class="cert-name">OOP Programming Principles</div>
+      <div class="cert-year">2024</div>
+    </div>
+    <div class="cert">
+      <div class="cert-org">SekolahMu · Prakerja</div>
+      <div class="cert-name">Microsoft Word Document Management</div>
+      <div class="cert-year">2024</div>
+    </div>
+    <div class="cert" style="border-style:dashed;display:flex;align-items:center;justify-content:center;min-height:90px;">
+      <div style="text-align:center;color:var(--text3)">
+        <div style="font-family:var(--mono);font-size:11px">More in progress</div>
+        <div style="font-size:24px;margin-top:4px">+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="sec-divider"/>
+
+<!-- CONTACT -->
+<section id="contact" class="sec">
+  <div class="contact-wrap reveal">
+    <div class="contact-left">
+      <div class="sec-tag">Contact</div>
+      <h2>Let's build<br/><span style="background:linear-gradient(135deg,var(--violet),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent">something great.</span></h2>
+      <p>Open for remote part-time work, freelance Pine Script development, data analysis, or any project that merges economics and technology. Let's talk.</p>
+      <a href="mailto:rizkykadari9@gmail.com" class="btn btn-primary" style="width:fit-content">rizkykadari9@gmail.com ↗</a>
+    </div>
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/rizky-kadari-2-935478312/" target="_blank" class="clink">
+        <span class="ci">💼</span><span class="ct">LinkedIn</span><span class="cu">rizky-kadari</span>
+      </a>
+      <a href="https://github.com/Tertercao/" target="_blank" class="clink">
+        <span class="ci">🐙</span><span class="ct">GitHub</span><span class="cu">Tertercao</span>
+      </a>
+      <a href="https://ekostatslivekyy.netlify.app/" target="_blank" class="clink">
+        <span class="ci">🌐</span><span class="ct">EkoStat LIVE</span><span class="cu">ekostatslivekyy.netlify.app</span>
+      </a>
+      <a href="https://rizkycaocv.netlify.app/Rizky Kadari CV.pdf" target="_blank" class="clink">
+        <span class="ci">📄</span><span class="ct">Download CV</span><span class="cu">PDF Resume</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 · <span>Rizky Kadari</span></p>
+  <p style="color:var(--text3)">Economics × IT · Built with precision & passion</p>
+</footer>
+
+</div>
+
+<script>
+// ── PARTICLES ──
+const cvs = document.getElementById('particles');
+const ctx = cvs.getContext('2d');
+let W, H, pts = [];
+function resize(){ W = cvs.width = innerWidth; H = cvs.height = innerHeight; }
+resize(); window.addEventListener('resize', resize);
+for(let i=0;i<80;i++) pts.push({x:Math.random()*1920,y:Math.random()*1080,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.5+.5,a:Math.random()*.5+.1});
+function animPts(){
+  ctx.clearRect(0,0,W,H);
+  pts.forEach(p=>{
+    p.x+=p.vx; p.y+=p.vy;
+    if(p.x<0)p.x=W; if(p.x>W)p.x=0;
+    if(p.y<0)p.y=H; if(p.y>H)p.y=0;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(124,110,255,${p.a})`;ctx.fill();
+  });
+  // connections
+  pts.forEach((a,i)=>{ pts.slice(i+1).forEach(b=>{
+    const d=Math.hypot(a.x-b.x,a.y-b.y);
+    if(d<120){ ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
+      ctx.strokeStyle=`rgba(124,110,255,${(1-d/120)*.06})`;ctx.lineWidth=.5;ctx.stroke(); }
+  });});
+  requestAnimationFrame(animPts);
+}
+animPts();
+
+// ── SCROLL REVEAL ──
+const revEls = document.querySelectorAll('.reveal');
+new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+},{threshold:.08}).observe ? revEls.forEach(el=>new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+},{threshold:.08}).observe(el)) : revEls.forEach(el=>el.classList.add('in'));
+
+// ── LIVE DATA ──
+async function fetchLive(){
+  try{
+    // CoinGecko: BTC, ETH, XAU proxy
+    const cg = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether-gold&vs_currencies=usd&include_24hr_change=true').then(r=>r.json());
+    const btc = cg.bitcoin?.usd;
+    const eth = cg.ethereum?.usd;
+    const xau = cg['tether-gold']?.usd;
+
+    if(btc){ setVal('btc-price','$'+btc.toLocaleString(),'up'); setVal('ls-btc','$'+btc.toLocaleString(),'up'); }
+    if(eth){ setVal('eth-price','$'+eth.toLocaleString(),'up'); setVal('ls-eth','$'+eth.toLocaleString(),'up'); }
+    if(xau){ setVal('xau-price','$'+xau.toLocaleString(),'up'); setVal('ls-xau','$'+xau.toLocaleString(),'up'); setVal('fc-xau','$'+xau.toLocaleString()); }
+  }catch(e){}
+
+  try{
+    // Frankfurter: USD/IDR
+    const fx = await fetch('https://api.frankfurter.app/latest?from=USD&to=IDR').then(r=>r.json());
+    const idr = fx.rates?.IDR;
+    if(idr){
+      const fmt = Math.round(idr).toLocaleString('id-ID');
+      setVal('usd-idr','Rp'+fmt); setVal('ls-idr','Rp'+fmt);
+    }
+  }catch(e){}
+
+  try{
+    // Fear & Greed
+    const fg = await fetch('https://api.alternative.me/fng/?limit=1').then(r=>r.json());
+    const val = fg.data?.[0]?.value;
+    const cls = fg.data?.[0]?.value_classification;
+    if(val){ const color = val<30?'dn':val>60?'up':''; setValClass('ls-fg',val+' — '+cls,color); }
+  }catch(e){}
+
+  const now = new Date();
+  const el = document.getElementById('last-update');
+  if(el) el.textContent = 'Updated '+now.getHours()+':'+String(now.getMinutes()).padStart(2,'0');
+}
+
+function setVal(id, val, cls=''){
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.textContent = val;
+  if(cls){ el.className = el.className.replace(/\bup\b|\bdn\b/g,'').trim()+' '+cls; }
+}
+function setValClass(id, val, cls){
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.textContent = val;
+  el.className = 'li-val'+(cls?' '+cls:'');
+}
+
+fetchLive();
+setInterval(fetchLive, 60000); // refresh every 60s
+</script>
+</body>
+</html>
